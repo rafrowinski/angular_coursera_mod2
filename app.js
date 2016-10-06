@@ -4,50 +4,9 @@
 
   .service('ToBuyService', BaseListService)
   .service('AlreadyBoughtService', BaseListService)
-  .controller('SampleDataController', SampleDataController)
   .controller('AddController', AddController)
   .controller('ToBuyController', ToBuyController)
   .controller('AlreadyBoughtController', AlreadyBoughtController);
-
-  var sampleToBuyList = [
-    {
-      name : 'cookies',
-      quantity : '12 boxes'
-    },
-    {
-      name : 'juice',
-      quantity : '2 bottles'
-    },
-    {
-      name : 'cake',
-      quantity : '2 pieces'
-    }
-  ];
-
-  var sampleBoughtList = [
-    {
-      name : 'rice',
-      quantity : '12 boxes'
-    },
-    {
-      name : 'wine',
-      quantity : '2 bottles'
-    },
-    {
-      name : 'apple pie',
-      quantity : '2 pieces'
-    }
-  ];
-
-  SampleDataController.$inject = ['ToBuyService', 'AlreadyBoughtService'];
-    function SampleDataController(ToBuyService, AlreadyBoughtService) {
-    var controller = this;
-
-    controller.loadSampleData = function() {
-      ToBuyService.setItems(sampleToBuyList);
-      AlreadyBoughtService.setItems(sampleBoughtList);
-    }
-  };
 
   AddController.$inject = ['ToBuyService'];
   function AddController(ToBuyService) {
@@ -67,7 +26,7 @@
 
     controller.buyItem = function(index) {
       var item = ToBuyService.getItem(index);
-      AlreadyBoughtService.addItem(item);
+      AlreadyBoughtService.addWholeItem(item);
 
       ToBuyService.removeItem(index);
     };
@@ -88,7 +47,7 @@
     var service = this;
     var itemList = [];
 
-    service.addItem = function(item) {
+    service.addWholeItem = function(item) {
       itemList.push(item);
     };
 
@@ -99,7 +58,6 @@
       };
       itemList.push(item);
     };
-
 
     service.removeItem = function(index) {
       itemList.splice(index, 1);

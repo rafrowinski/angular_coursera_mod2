@@ -30,24 +30,13 @@
 
   <div class="row">
 
-    <!-- load sample data -->
-    <div class="col-md-12">
-      <div ng-controller="SampleDataController as sample">
-        <button type="button" ng-click="sample.loadSampleData()">Load sample data</button>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="row">
-
     <!-- To Buy List -->
     <div class="col-md-12">
       <h2>Add items</h2>
       <div ng-controller="AddController as itemAdder">
-        <input type="text" ng-model="itemAdder.itemName" placeholder="item name" required>
-        <input type="text" ng-model="itemAdder.itemQuantity" placeholder="quantity" required>
-        <button type="button" ng-click="itemAdder.addItem()">Add item to shopping list</button>
+        <input class="form-group" type="text" ng-model="itemAdder.itemName" placeholder="item name" required>
+        <input class="form-group" type="text" ng-model="itemAdder.itemQuantity" placeholder="quantity" required>
+        <button type="button" class="btn btn-default" ng-click="itemAdder.addItem()">Add item to shopping list</button>
       </div>
     </div>
 
@@ -67,8 +56,7 @@
     <div class="col-md-12" ng-controller="AlreadyBoughtController as bought">
      <h2>Already Bought:</h2>
      <ul>
-       <li ng-repeat="item in bought.items">Bought {{item.quantity}} {{item.name}}
-       </li>
+       <li ng-repeat="item in bought.items">Bought {{item.quantity}} {{item.name}}</li>
      </ul>
      <div class="emptyMessage" ng-show="bought.items.length === 0">Nothing bought yet.</div>
     </div>
